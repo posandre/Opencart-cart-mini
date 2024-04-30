@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Cart mini</name>
+    <code>opencart-cart-mini</code>
+    <version>1.0.0</version>
+    <link>an.postoliuk@gmail.com</link>
+    <author>Andrii Postoliuk</author>
+    <file path="catalog/controller/checkout/cart.php">
+        <operation>
+            <search>
+               <![CDATA[$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total,$this->currency->getCode(),1));]]>
+            </search>
+            <add position="after">
+                <![CDATA[$json['total_mini'] = $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0);]]>
+            </add>
+        </operation>
+    </file>       
+</modification>
